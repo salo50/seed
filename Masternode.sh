@@ -39,9 +39,9 @@ clear
 #/if [[ $DOSETUPTWO =~ "y" ]] ; then
 
 redspace-cli stop > /dev/null 2>&1
-wget https://raw.githubusercontent.com/salo50/seed/master/galileld -O /usr/local/bin/galileld
-wget https://raw.githubusercontent.com/salo50/seed/master/galilel-cli -O /usr/local/bin/galilel-cli
-chmod +x /usr/local/bin/galilel*
+wget https://raw.githubusercontent.com/salo50/seed/master/redspaced -O /usr/local/bin/redspaced
+wget https://raw.githubusercontent.com/salo50/seed/master/redspace-cli -O /usr/local/bin/redspace-cli
+chmod +x /usr/local/bin/redspace*
 
 #/fi
 
@@ -72,15 +72,15 @@ fi
 echo "IP Done"
 echo ""
 
-CONF_DIR=~/.galilel/
-CONF_FILE=galilel.conf
-PORT=36001
+CONF_DIR=~/.redspace/
+CONF_FILE=redspace.conf
+PORT=52250
 
 mkdir -p $CONF_DIR
 echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` > $CONF_DIR/$CONF_FILE
 echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> $CONF_DIR/$CONF_FILE
 echo "rpcallowip=127.0.0.1" >> $CONF_DIR/$CONF_FILE
-echo "rpcport=36002" >> $CONF_DIR/$CONF_FILE
+echo "rpcport=52249" >> $CONF_DIR/$CONF_FILE
 echo "listen=1" >> $CONF_DIR/$CONF_FILE
 echo "server=1" >> $CONF_DIR/$CONF_FILE
 echo "daemon=1" >> $CONF_DIR/$CONF_FILE
@@ -88,4 +88,4 @@ echo "txindex=1" >> $CONF_DIR/$CONF_FILE
 echo "maxconnections=999" >> $CONF_DIR/$CONF_FILE
 echo "port=$PORT" >> $CONF_DIR/$CONF_FILE
 
-galileld -daemon
+redspaced -daemon
